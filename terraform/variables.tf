@@ -24,5 +24,5 @@ variable "image" {
 }
 
 variable "public_key_path" {
-  default = "C:/Users/Erick/.ssh/id_rsa.pub"
+  default = "~/.ssh/id_rsa.pub"
 }
