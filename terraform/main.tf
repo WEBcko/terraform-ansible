@@ -20,7 +20,6 @@ resource "google_compute_instance" "vm_instance" {
     network = "default"
 
     access_config {
-      // Libera IP público
     }
   }
 

@@ -44,7 +44,7 @@ services:
       - banco_network
 
 volumes:
-  postgres_data:  # Volume único para PostgreSQL
+  postgres_data: 
 
 networks:
   banco_network:
