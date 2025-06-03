@@ -1,3 +1,10 @@
+terraform {
+  backend "gcs" {
+    bucket = "estado-terraform"   
+    prefix = "terraform/state"         # Caminho dentro do bucket
+  }
+}
+
 provider "google" {
   project = var.project_id
   region  = var.region
