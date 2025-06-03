@@ -16,7 +16,7 @@ jobs:
       - name: Set up GCP credentials
         run: |
           mkdir -p /home/runner/gcp_credentials
-          echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" > /home/runner/gcp_credentials/credentials.json
+          echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" | base64 -d > /home/runner/gcp_credentials/credentials.json
           chmod 600 /home/runner/gcp_credentials/credentials.json
 
       - name: Gerar par de chaves SSH para acesso à VM
