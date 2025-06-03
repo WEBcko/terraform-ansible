@@ -50,10 +50,16 @@ jobs:
                 -var "image=ubuntu-os-cloud/ubuntu-2204-lts" \
                 -var "disk_size=10"
 
+      - name: Export Google credentials path
+        run: |
+          export GOOGLE_APPLICATION_CREDENTIALS="/home/runner/gcp_credentials/credentials.json"
+        shell: bash
+
+
       - name: Terraform Plan
         run: |
           cd terraform
-          GOOGLE_APPLICATION_CREDENTIALS="/home/runner/gcp_credentials/credentials.json" terraform plan -out=planfile \
+          terraform plan -out=planfile \
             -var "project_id=${{ secrets.GCP_PROJECT_ID }}" \
             -var "region=us-central" \
             -var "zone=us-central1-a" \
