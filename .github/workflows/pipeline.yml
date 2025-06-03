@@ -37,6 +37,19 @@ jobs:
           cd terraform
           terraform init
 
+      - name: Terraform destroy
+        run: |
+          cd terraform
+          terraform destroy -auto-approve \
+                -var "project_id=${{ secrets.GCP_PROJECT_ID }}" \
+                -var "region=us-central" \
+                -var "zone=us-central1-a" \
+                -var "credentials_file_path=/home/runner/gcp_credentials/credentials.json" \
+                -var "public_key_path=/home/runner/.ssh/id_rsa.pub" \
+                -var "machine_type=e2-medium" \
+                -var "image=ubuntu-os-cloud/ubuntu-2204-lts" \
+                -var "disk_size=10"
+
       - name: Terraform Plan
         run: |
           cd terraform
