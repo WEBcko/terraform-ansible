@@ -1,6 +1,6 @@
 ---
 - name: Configurar VM e fazer deploy da aplicação
-  hosts: web
+  hosts: all
   become: true
 
   tasks:
@@ -18,7 +18,7 @@
 
     - name: Clonar repositório do projeto
       git:
-        repo: https://github.com/Party-Chinese-Comunism/terraform-repo.git
+        repo: https://github.com/WEBcko/terraform-ansible.git
         dest: /home/ubuntu/app
         version: main
         force: yes
