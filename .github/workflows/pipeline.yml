@@ -40,6 +40,7 @@ jobs:
       - name: Terraform Plan
         run: |
           cd terraform
+          terraform destroy -auto-approve
           terraform plan -out=planfile \
             -var "project_id=${{ secrets.GCP_PROJECT_ID }}" \
             -var "region=us-central \
