@@ -35,7 +35,7 @@ jobs:
       - name: Initialize Terraform
         run: |
           cd terraform
-          terraform init
+          terraform init -backend-config="credentials=/home/runner/gcp_credentials/credentials.json"
 
       - name: Terraform destroy
         run: |
@@ -54,7 +54,6 @@ jobs:
         run: |
           cd terraform
           terraform plan -out=planfile \
-            -backend-config="credentials=/home/runner/gcp_credentials/credentials.json"
             -var "project_id=${{ secrets.GCP_PROJECT_ID }}" \
             -var "region=us-central" \
             -var "zone=us-central1-a" \
