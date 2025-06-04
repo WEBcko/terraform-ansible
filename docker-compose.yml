@@ -13,7 +13,7 @@ services:
     pull_policy: always
     container_name: backend
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@postgres:1234/blogdb
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/blogdb
     depends_on:
       - postgres
     networks:
