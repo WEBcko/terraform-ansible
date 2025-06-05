@@ -15,7 +15,8 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/blogdb
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     networks:
       - front_network
       - banco_network
@@ -32,6 +33,11 @@ services:
       - ./db-init:/docker-entrypoint-initdb.d
     networks:
       - banco_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data: 
