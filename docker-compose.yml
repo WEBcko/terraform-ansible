@@ -7,6 +7,9 @@ services:
       - "80:80"    
     networks:
       - front_network
+    depends_on:
+      backend:
+        condition: service_healthy
 
   backend:
     image: erickojeda/back:latest
@@ -20,6 +23,11 @@ services:
     networks:
       - front_network
       - banco_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/user/healthcheck"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres:
     image: postgres:latest
